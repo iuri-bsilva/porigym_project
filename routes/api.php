@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::prefix('academia')->group(function () {
     Route::get('/', [AcademiaController::class,'encontraAcademias']);
     Route::post('/store', [AcademiaController::class, 'store']);
