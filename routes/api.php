@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcademiaController;
+use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +34,11 @@ Route::prefix('usuario')->group(function () {
     Route::post('/store', [UsuarioController::class,'store']);
     Route::put('/{id}/update', [UsuarioController::class,'update']);
     Route::delete('/{id}/delete', [UsuarioController::class,'delete']);
+});
+
+Route::prefix('contato')->group(function () {
+    Route::get('/', [ContatoController::class, 'index']);
+    Route::post('/store', [ContatoController::class,'store']);
+    Route::put('/{id}/update', [ContatoController::class,'update']);
+    Route::delete('/{id}/delete', [ContatoController::class,'delete']);
 });

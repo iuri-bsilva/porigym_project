@@ -15,5 +15,10 @@ class Usuario extends Model
         "ativo"
     ];
 
+    public function contato()
+    {
+        return $this->hasMany(Contrato::class);
+    }
+
     use HasFactory;
 }
