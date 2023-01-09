@@ -37,7 +37,7 @@ Route::prefix('usuario')->group(function () {
 });
 
 Route::prefix('contato')->group(function () {
-    Route::get('/', [ContatoController::class, 'index']);
+    Route::get('/{id}', [ContatoController::class, 'index']);
     Route::post('/store', [ContatoController::class,'store']);
     Route::put('/{id}/update', [ContatoController::class,'update']);
     Route::delete('/{id}/delete', [ContatoController::class,'delete']);

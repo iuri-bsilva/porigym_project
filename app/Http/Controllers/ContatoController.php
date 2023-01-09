@@ -16,10 +16,16 @@ class ContatoController extends Controller
         $this->contatoRepository = new ContatoRepository;
     }
 
-    public function index()
+    public function index($usuarioId)
     {
         try {
-            return $this->contatoRepository->getAllContatos();
+            return $this->contatoRepository->getContatosByUsuarioId($usuarioId)->map(function($contato) {
+                    return [
+                        'id' => $contato->id,
+                        'telefone' => $contato->telefone,
+                        'id_usuario' => $contato->id_usuario
+                    ];
+                });
         } catch (\Throwable $th) {
             return ['messages' => $th->getMessage()];
         }
@@ -28,11 +34,16 @@ class ContatoController extends Controller
     public function store(ContatoPostRequest $request)
     {
         try {
-            $contato = $this->contatoRepository->add($request->validated());
+            $contato = DB::transaction(function() use($request){
+                return $this->contatoRepository->add($request->validated());
+            });
 
             return [
                 'sucesso' => true,
-                'dado' => $contato
+                'dados' => [
+                    'telefone' => $contato->telefone,
+                    'id_usuario' => $contato->id_usuario
+                ]
             ];
         } catch (\Throwable $th) {
             return ['messages' => $th->getMessage()];
@@ -51,7 +62,7 @@ class ContatoController extends Controller
 
             return [
                 'sucesso' => true,
-                'dado' => [
+                'dados' => [
                     'telefone' => $contato->telefone,
                     'id_usuario' => $contato->id_usuario
                 ]

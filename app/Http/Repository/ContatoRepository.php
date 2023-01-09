@@ -20,4 +20,9 @@ class ContatoRepository {
     {
         return Contato::create($dados);
     }
+
+    public function getContatosByUsuarioId($usuarioId)
+    {
+        return Contato::where('id_usuario', $usuarioId)->get();
+    }
 }
