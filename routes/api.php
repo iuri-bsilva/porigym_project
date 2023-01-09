@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcademiaController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,12 @@ Route::prefix('academia')->group(function () {
     Route::post('/store', [AcademiaController::class, 'store']);
     Route::put('/{id}/update', [AcademiaController::class, 'update']);
     Route::delete('/{id}/delete', [AcademiaController::class, 'delete']);
+});
+
+Route::prefix('usuario')->group(function () {
+    Route::get('/', [UsuarioController::class,'index']);
+    Route::get('/{id}', [UsuarioController::class, 'show']);
+    Route::post('/store', [UsuarioController::class,'store']);
+    Route::put('/{id}/update', [UsuarioController::class,'update']);
+    Route::delete('/{id}/delete', [UsuarioController::class,'delete']);
 });

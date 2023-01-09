@@ -11,7 +11,6 @@ class Usuario extends Model
         "nome",
         "email",
         "senha",
-        "id_perfil",
         "id_academia",
         "ativo"
     ];
