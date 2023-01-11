@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcademiaController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PerfilController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +42,12 @@ Route::prefix('contato')->group(function () {
     Route::post('/store', [ContatoController::class,'store']);
     Route::put('/{id}/update', [ContatoController::class,'update']);
     Route::delete('/{id}/delete', [ContatoController::class,'delete']);
+});
+
+Route::prefix('perfil')->group(function () {
+    Route::get('/', [PerfilController::class,'index']);
+    Route::get('/{id}', [PerfilController::class, 'show']);
+    Route::post('/store', [PerfilController::class,'store']);
+    Route::put('/{id}/update', [PerfilController::class,'update']);
+    Route::delete('/{id}/delete', [PerfilController::class,'delete']);
 });
